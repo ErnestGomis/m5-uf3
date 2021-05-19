@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(leftButton))
+        if (Input.GetKeyDown(jumpButton))
         {
             if (grounded)
             {
@@ -45,12 +45,10 @@ public class PlayerMovement : MonoBehaviour
         
         if (Input.GetKey(leftButton))
         {
-
             playerDirection = Direction.LEFT;
         }
         else if (Input.GetKey(rightButton))
         {
-
             playerDirection = Direction.RIGHT;
         }
 
