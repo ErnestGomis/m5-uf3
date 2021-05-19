@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public enum Direction { NONE, UP, DOWN, LEFT, RIGHT };
+    public enum Direction { NONE, LEFT, RIGHT };
 
     public Direction playerDirection = Direction.NONE;
 
@@ -20,21 +20,22 @@ public class PlayerMovement : MonoBehaviour
 
     private bool faceR = true;
 
-    private KeyCode jumpButton = KeyCode.Space;
+    private KeyCode jumpButton = KeyCode.W;
     private KeyCode leftButton = KeyCode.A;
     private KeyCode rightButton = KeyCode.D;
 
     private KeyCode quitButton = KeyCode.Escape;
 
-    // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        float delta = Time.fixedDeltaTime;
+        
+        //Salto
         if (Input.GetKeyDown(jumpButton))
         {
             if (grounded)
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         
+        //Movimiemto
         if (Input.GetKey(leftButton))
         {
             playerDirection = Direction.LEFT;
@@ -102,13 +104,5 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionExit2D()
     {
         grounded = false;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if (collision.gameObject.CompareTag("Ground"))
-        //{
-
-        //}
     }
 }
